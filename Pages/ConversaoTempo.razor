@@ -1,0 +1,138 @@
+﻿@page "/"
+@inject Tempo tempo
+
+
+<PageTitle>Conversão Tempo</PageTitle>
+
+<main class=grupo>
+    <ul>
+        <li>
+            @code{
+                private double vInputHora { get; set; }
+                private double vResultMinuto { get; set; }
+
+                private double vInputMinuto { get; set; }
+                private double vResultHora { get; set; }
+            }
+
+            <div>
+                <div class="componente-input">
+                    <label>Hora</label>
+                    <br/>
+                    <input @bind="@vInputHora">                        
+                </div>                
+                <div class="componente-input">
+                    <label class="label-padrao">Minuto</label>
+                    <br/>
+                    <input value="@vResultMinuto"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" @onclick="CalcularHoraMinuto">Calcular</button>
+            </div>
+                    
+            <div>
+                <div class="componente-input">
+                    <label>Minuto</label>
+                    <br/>
+                    <input @bind="@vInputMinuto"/>
+                </div>
+                <div class="componente-input">
+                    <label>Hora</label>
+                    <br/>
+                    <input value="@vResultHora"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" @onclick="CalcularMinutoHora">Calcular</button>
+            </div>
+        </li>
+
+        <li>
+            @code{
+                private double vInputMinuto2 { get; set; }
+                private double vResultSegundo { get; set; }
+
+                private double vInputSegundo { get; set; }
+                private double vResultMinuto2 { get; set; }
+            }
+            <div>
+                <div class="componente-input">
+                    <label>Minuto</label>
+                    <br/>
+                    <input @bind="@vInputMinuto2"/>
+                </div>
+                <div class="componente-input">
+                    <label>Segundo</label>
+                    <br/>
+                    <input value="@vResultSegundo"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" @onclick="CalcularMinutoSegundo">Calcular</button>
+            </div>
+                
+            <div>
+                <div class="componente-input">
+                    <label>Segundo</label>
+                    <br/>
+                    <input class="txtValor" @bind="@vInputSegundo"/>
+                </div>
+                <div class="componente-input">
+                    <label>Minuto</label>
+                    <br/>
+                    <input value="@vResultMinuto2"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" @onclick="CalcularSegundoMinuto">Calcular</button>
+            </div>
+        </li>
+
+        <li>
+            @code{
+                    private double vInputHora2 { get; set; }
+                    private double vResultSegundo2 { get; set; }
+
+                    private double vInputSegundo2 { get; set; }
+                    private double vResulthora { get; set; }
+                }
+            <div>
+                <div class="componente-input">
+                    <label>Hora</label>
+                    <br/>
+                    <input @bind="@vInputHora2"/>
+                </div>
+
+                <div class="componente-input">
+                    <label>Segundo</label>
+                    <br/>
+                    <input value="@vResultSegundo2"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" @onclick="CalcularSegundoHora">Calcular</button>
+            </div>
+                
+            <div>
+                <div class="componente-input">
+                    <label>Segundo</label>
+                    <br/>
+                    <input @bind="@vInputSegundo2"/>
+                </div>
+                <div class="componente-input">
+                    <label>Hora</label>
+                    <br/>
+                    <input value="@vResulthora"/>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" @onclick="CalcularHoraSegundo">Calcular</button>
+            </div>
+        </li>
+    </ul> 
+</main>
+
+@code {
+    #region[METODOS]
+
+    //vai ter que ser em grupos separados mesmo que seja o calculo inverso por que aparentemente nao eh tao simples fazer um leave aqui
+    private async Task CalcularHoraMinuto() => this.vResultMinuto = await tempo.GetMinutoHora(vInputHora.ToInt32());
+    private async Task CalcularMinutoHora() => this.vResultHora = await tempo.GetHoraMinuto(vInputMinuto.ToInt32());
+    
+    private async Task CalcularMinutoSegundo() => this.vResultSegundo = await tempo.GetSegundoMinuto(vInputMinuto2.ToInt32());
+    private async Task CalcularSegundoMinuto() => this.vResultMinuto2 = await tempo.GetMinutoSegundo(vInputSegundo.ToInt32());
+    
+    private async Task CalcularSegundoHora() => this.vResultSegundo2 = await tempo.GetSegundoHora(vInputHora2.ToInt32());
+    private async Task CalcularHoraSegundo() => this.vResulthora = await tempo.GetHoraSegundo(vInputSegundo2.ToInt32());
+
+    #endregion
+}

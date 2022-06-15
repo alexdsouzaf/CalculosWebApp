@@ -1,0 +1,39 @@
+﻿body {
+
+}
+
+button{
+    margin:10px;
+}
+
+.componente-input {
+    text-align: start;
+    display: block;
+    font-size: 16px;
+    width: 100%;
+    margin: 0 10%;
+}
+
+.componente-input label {
+    font-size: 12px;    
+}
+
+.grupo {
+        width: 940px;
+        margin: 0 auto;
+        padding: 60px 0;
+}
+
+.grupo li {
+    display: inline-block;
+    text-align: center;
+    width: 30%;
+    vertical-align: top;
+    margin: 0 1.5%;
+    padding: 30px 15px;
+    box-sizing: border-box;
+    border-color: #778899;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}
